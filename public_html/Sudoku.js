@@ -126,11 +126,25 @@ function init() {
     solve.innerHTML = 'Solve';
     document.body.appendChild(solve);
     
+    const clear = document.createElement('button');
+    clear.classList.add('clear');
+    clear.innerHTML = 'Clear';
+    document.body.appendChild(clear);
+    
     populateGrid(table, grid);
     
     solve.addEventListener('click', (event) => {
         readData(table, grid);
         solveSudoku(grid);
+        populateGrid(table, grid);
+    });
+    
+    clear.addEventListener('click', event => {
+        for(let i=0; i<9; i++) {
+            for(let j=0; j<9; j++) {
+                grid[i][j] = 0;
+            }
+        }
         populateGrid(table, grid);
     });
     

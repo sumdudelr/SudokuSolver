@@ -64,3 +64,7 @@ table.numGrid {
     align-items: center;
     flex-direction: column;
 }
+
+.selected-cell {
+    background-color: lightblue;
+}

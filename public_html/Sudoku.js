@@ -83,6 +83,9 @@ function init() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
+    
+    // The current location of the cursor
+    let currentLoc = [0, 0];
 
     const table = document.getElementById('table');
     for(let i=0; i<9; i++) {
@@ -107,13 +110,51 @@ function init() {
         }
     }
     
-    populateGrid(table, grid);
+    document.addEventListener('keydown', event => {
+        // Log the key press
+        console.log(event.key);
+        const num = parseInt(event.key);
+        if(!isNaN(num)) {
+            grid[currentLoc[0]][currentLoc[1]] = num;
+        }
+        else {
+            switch(event.key) {
+                case 'ArrowUp':
+                    if(currentLoc[0] > 0)
+                        currentLoc[0]--;
+                    else
+                        currentLoc[0] = 8;
+                    break;
+                case 'ArrowDown':
+                    if(currentLoc[0] < 8)
+                        currentLoc[0]++;
+                    else
+                        currentLoc[0] = 0;
+                    break;
+                case 'ArrowLeft':
+                    if(currentLoc[1] > 0)
+                        currentLoc[1]--;
+                    else
+                        currentLoc[1] = 8;
+                    break;
+                case 'ArrowRight':
+                    if(currentLoc[1] < 8)
+                        currentLoc[1]++;
+                    else
+                        currentLoc[1] = 0;
+                    break;
+            }
+        }
+        populateGrid(table, grid, currentLoc);
+    });
+    
+    populateGrid(table, grid, currentLoc);
     
     const solve = document.getElementById('solve');
     solve.addEventListener('click', (event) => {
         readData(table, grid);
         solveSudoku(grid);
-        populateGrid(table, grid);
+        populateGrid(table, grid, currentLoc);
     });
     
     const clear = document.getElementById('clear');
@@ -123,7 +164,7 @@ function init() {
                 grid[i][j] = 0;
             }
         }
-        populateGrid(table, grid);
+        populateGrid(table, grid, currentLoc);
     });
     
     document.getElementsByName('num').forEach(element => {
@@ -138,10 +179,17 @@ function init() {
     
 }
 
-function populateGrid(g, grid) {
+function populateGrid(g, grid, currentLoc) {
     for(let row=0; row<9; row++) {
         for(let col=0; col<9; col++) {
             g.rows[row].cells[col].innerText = grid[row][col] || '';
+            if(row === currentLoc[0] && col === currentLoc[1]) {
+                // Highlight the current cell
+                g.rows[row].cells[col].classList.add('selected-cell');
+            }
+            else {
+                g.rows[row].cells[col].classList.remove('selected-cell');
+            }
         }
     }
 }

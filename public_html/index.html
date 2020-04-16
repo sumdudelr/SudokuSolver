@@ -25,25 +25,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     </head>
     <body onload="init();">
         <script src="Sudoku.js"></script>
-        <input type="radio" name="num" id="1" checked="checked">
-        <label for="1">1</label>
-        <input type="radio" name="num" id="2">
-        <label for="2">2</label>
-        <input type="radio" name="num" id="3">
-        <label for="3">3</label>
-        <input type="radio" name="num" id="4">
-        <label for="4">4</label>
-        <input type="radio" name="num" id="5">
-        <label for="5">5</label>
-        <input type="radio" name="num" id="6">
-        <label for="6">6</label>
-        <input type="radio" name="num" id="7">
-        <label for="7">7</label>
-        <input type="radio" name="num" id="8">
-        <label for="8">8</label>
-        <input type="radio" name="num" id="9">
-        <label for="9">9</label>
-        <input type="radio" name="num" id="0">
-        <label for="0">Erase</label>
+        <div class="col-container">
+            <h1>Sudoku Solver</h1>
+            <table class="sudoku" id="table"></table>
+            <div class="button-container">
+                <input type="radio" name="num" id="1" checked="checked">
+                <label for="1">1</label>
+                <input type="radio" name="num" id="2">
+                <label for="2">2</label>
+                <input type="radio" name="num" id="3">
+                <label for="3">3</label>
+                <input type="radio" name="num" id="4">
+                <label for="4">4</label>
+                <input type="radio" name="num" id="5">
+                <label for="5">5</label>
+                <input type="radio" name="num" id="6">
+                <label for="6">6</label>
+                <input type="radio" name="num" id="7">
+                <label for="7">7</label>
+                <input type="radio" name="num" id="8">
+                <label for="8">8</label>
+                <input type="radio" name="num" id="9">
+                <label for="9">9</label>
+                <input type="radio" name="num" id="0">
+                <label for="0">Erase</label>
+            </div>
+            <div class="button-container">
+                <button id="solve">Solve</button>
+                <button id="clear">Clear</button>
+            </div>
+        </div>
     </body>
 </html>

@@ -83,20 +83,8 @@ function init() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
-    
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('wrapper');
-    document.body.appendChild(wrapper);
-    
-    const col = document.createElement('div');
-    col.classList.add('col');
-    wrapper.appendChild(col);
-    
-    const head = document.createElement('h1');
-    head.innerHTML = 'Sudoku Solver';
-    col.appendChild(head);
-    
-    const table = document.createElement('table');
+
+    const table = document.getElementById('table');
     for(let i=0; i<9; i++) {
         const row = table.insertRow(-1); // Append a row to the table
         for(let j=0; j<9; j++) {
@@ -118,27 +106,17 @@ function init() {
             });
         }
     }
-    table.classList.add('sudoku');
-    col.appendChild(table);
-    
-    const solve = document.createElement('button');
-    solve.classList.add('solve');
-    solve.innerHTML = 'Solve';
-    document.body.appendChild(solve);
-    
-    const clear = document.createElement('button');
-    clear.classList.add('clear');
-    clear.innerHTML = 'Clear';
-    document.body.appendChild(clear);
     
     populateGrid(table, grid);
     
+    const solve = document.getElementById('solve');
     solve.addEventListener('click', (event) => {
         readData(table, grid);
         solveSudoku(grid);
         populateGrid(table, grid);
     });
     
+    const clear = document.getElementById('clear');
     clear.addEventListener('click', event => {
         for(let i=0; i<9; i++) {
             for(let j=0; j<9; j++) {

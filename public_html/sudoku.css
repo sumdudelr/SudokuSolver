@@ -52,3 +52,15 @@ table.numGrid {
 .numGrid td:selected {
     border: solid thick;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.col-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
